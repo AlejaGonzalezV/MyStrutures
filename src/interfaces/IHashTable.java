@@ -4,7 +4,9 @@ public interface IHashTable<H> {
 	
 	public void create(int size);
 	
-	public void add(H newElement, int key);
+	public int hashFunctionChaining(int key);
+	
+	public void addChaining(H newElement, int key);
 	
 	public String find(int key) throws Exception;
 	
