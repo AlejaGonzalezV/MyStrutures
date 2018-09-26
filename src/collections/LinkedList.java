@@ -5,7 +5,6 @@ public class LinkedList<L> implements ILinkedList<L> {
 	
 	private NodeList root;
 	private NodeList last;
-	private NodeList prev;
 	private int sizeL;
 	
 	
@@ -67,22 +66,17 @@ public class LinkedList<L> implements ILinkedList<L> {
 		if(root == null) {
 			
 			setRoot(newElement);
+			setLast(newElement);
+			last.setNext(root);
 			sizeL++;
 			
 		} else {
 			
-			NodeList aux = root;
 			
-			while(aux.getNext() != null) {
-				
-				aux = aux.getNext();
-				
-			}
 			
-			aux.setNext(newElement);
-			newElement.setPrev(aux);
-			newElement.setNext(root);
-			root.setPrev(newElement);
+			last.setNext(newElement);
+			setLast(newElement);
+			last.setNext(root);
 			sizeL++;			
 		}
 		
@@ -114,20 +108,78 @@ public class LinkedList<L> implements ILinkedList<L> {
 		}
 		
 	}
-		
-	
 
 	@Override
-	public void delete(L element) {
+	public void deleteLinkedList(L element) throws Exception {
+		
+		if(isEmptyL()) {
+			
+			throw new Exception("The list is empty");
+			
+		} if(sizeL == 1) {
+			
+			root = null;
+			
+		} else {
+			
+		NodeList aux = root;
+		NodeList aux2 = null;
+		NodeList toFind = new NodeList(element);
+		boolean find = false;	
 		
 		
+			while(aux != null && !find) {
+				
+				if(aux.getInfo().equals(toFind.getInfo())) {
+					
+					find = true;
+					aux2.setNext(aux.getNext());
+	 				sizeL--;
+					
+				} else if(!find && aux.getNext() == null) {
+					
+					throw new Exception("The element isn't in the list");
+				
+				}
+				
+				aux2 = aux;
+				aux = aux.getNext();
+				
+			}
+			
+		}
 		
 	}
 
 	@Override
-	public L find(L element) {
-		// TODO Auto-generated method stub
-		return null;
+	public boolean find(L element) throws Exception {
+		
+		boolean find = false;
+		
+		if(isEmptyL()) {
+			
+			throw new Exception("The list is empty");
+			
+		} else {
+			
+		NodeList aux = root;
+		NodeList toFind = new NodeList(element);
+		
+			while(aux != null && !find) {
+				
+				if(aux.getInfo().equals(toFind.getInfo())) {
+					
+					find = true;
+		
+				} 
+				
+				aux = aux.getNext();
+				
+			}
+			
+		}
+		
+		return find;
 	}
 
 	@Override
@@ -156,6 +208,145 @@ public class LinkedList<L> implements ILinkedList<L> {
 
 	public void setRoot(NodeList root) {
 		this.root = root;
+	}
+
+	public NodeList getLast() {
+		return last;
+	}
+
+	public void setLast(NodeList last) {
+		this.last = last;
+	}
+
+	@Override
+	public boolean findCircularLinkedList(L element) throws Exception {
+		
+		boolean find = false;
+		
+		if(isEmptyL()) {
+			
+			throw new Exception("The list is empty");
+			
+		} else {
+			
+		NodeList aux = root;
+		NodeList toFind = new NodeList(element);
+		
+			while(aux != last && !find) {
+				
+				if(aux.getInfo().equals(toFind.getInfo())) {
+					
+					find = true;
+		
+			} 
+				
+				aux = aux.getNext();
+				
+			}
+			
+			if(last.getInfo().equals(toFind.getInfo())) {
+				
+				find = true;
+				
+			}
+			
+		}
+		
+		return find;
+		
+	}
+
+	@Override
+	public void deleteDoublyLinkedList(L element) throws Exception {
+		
+		if(isEmptyL()) {
+			
+			throw new Exception("The list is empty");
+			
+		} if(sizeL == 1) {
+			
+			root = null;
+			
+		} else {
+			
+		NodeList aux = root;
+		NodeList toFind = new NodeList(element);
+		boolean find = false;	
+		
+		
+			while(aux != null && !find) {
+				
+				if(aux.getInfo().equals(toFind.getInfo())) {
+					
+					find = true;
+					aux.getPrev().setNext(aux.getNext());
+	 				sizeL--;
+					
+				} else if(!find && aux.getNext() == null) {
+					
+					throw new Exception("The element isn't in the list");
+				
+				}
+				
+				
+				aux = aux.getNext();
+				
+			}
+			
+		}
+		
+	}
+
+	@Override
+	public void deleteCircularLinkedList(L element) throws Exception {
+		
+		if(isEmptyL()) {
+			
+			throw new Exception("The list is empty");
+			
+		} if(sizeL == 1) {
+			
+			root = null;
+			
+		} else {
+			
+		NodeList aux = root;
+		NodeList aux2 = null;
+		NodeList toFind = new NodeList(element);
+		boolean find = false;	
+		
+		
+			while(aux != last && !find) {
+				
+				if(aux.getInfo().equals(toFind.getInfo())) {
+					
+					find = true;
+					aux2.setNext(aux.getNext());
+	 				sizeL--;
+					
+				} 
+				
+				else if(aux.getInfo().equals(toFind.getInfo()) && !find) {
+					
+					find = true;
+					aux2.setNext(root);
+					
+					
+				}
+				
+				else if(!find && aux.getNext() == null) {
+					
+					throw new Exception("The element isn't in the list");
+				
+				}
+				
+				aux2 = aux;
+				aux = aux.getNext();
+				
+			}
+			
+		}
+		
 	}
 
 	
