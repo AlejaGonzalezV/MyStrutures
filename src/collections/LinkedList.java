@@ -72,8 +72,6 @@ public class LinkedList<L> implements ILinkedList<L> {
 			
 		} else {
 			
-			
-			
 			last.setNext(newElement);
 			setLast(newElement);
 			last.setNext(root);
@@ -96,7 +94,9 @@ public class LinkedList<L> implements ILinkedList<L> {
 			
 			NodeList aux = root;
 			
+			
 			while(aux.getNext() != null) {
+				
 				
 				aux = aux.getNext();
 				
@@ -104,7 +104,8 @@ public class LinkedList<L> implements ILinkedList<L> {
 			
 			aux.setNext(newElement);
 			newElement.setPrev(aux);
-			sizeL++;			
+			sizeL++;
+			
 		}
 		
 	}
@@ -349,7 +350,27 @@ public class LinkedList<L> implements ILinkedList<L> {
 		
 	}
 
-	
+	public L findWithKey(int k) {
+		
+		L element = null;
+		
+		NodeList aux = root;
+		
+		while(aux.getKey() != k && aux.getNext() != null) {
+			
+			aux = aux.getNext();
+			
+		}
+		
+		if(aux.getKey() == k) {
+			
+			
+			element = (L) aux;
+			
+		}
+		
+		return element;
+	}
 	
 
 }

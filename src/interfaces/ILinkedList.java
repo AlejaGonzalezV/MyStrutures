@@ -22,5 +22,6 @@ public interface ILinkedList<L> {
 	public int sizeL();
 	public boolean isEmptyL();
 	public NodeList getRoot();
+	public L findWithKey(int k);
 
 }

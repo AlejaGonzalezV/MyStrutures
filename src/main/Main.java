@@ -9,13 +9,13 @@ public class Main {
 		IQueue<Integer> cola = new Queue<Integer>();
 		ILinkedList<String>lista = new LinkedList<String>();
 		
-		lista.addCircularLinkedList("A");
-		lista.addCircularLinkedList("B");
-		lista.addCircularLinkedList("C");
-		lista.addCircularLinkedList("D");
-		lista.addCircularLinkedList("E");
-		System.out.println(lista.findCircularLinkedList("C"));
-		lista.deleteCircularLinkedList("B");
+		lista.addDoublyLinkedList("A");
+		lista.addDoublyLinkedList("B");
+		lista.addDoublyLinkedList("C");
+		lista.addDoublyLinkedList("D");
+		lista.addDoublyLinkedList("E");
+		System.out.println(lista.find("C"));
+		lista.deleteDoublyLinkedList("B");
 		System.out.println(lista.sizeL());
 //		System.out.println(lista.sizeL());
 //		lista.deleteLinkedList(2);
@@ -25,7 +25,7 @@ public class Main {
 
 		
 		System.out.println(lista.getRoot().getNext().getInfo());
-//		System.out.println(lista.getRoot().getInfo());
+		System.out.println(lista.getRoot().getInfo());
 		
 		
 
