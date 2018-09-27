@@ -3,8 +3,8 @@ import interfaces.ILinkedList;
 
 public class LinkedList<L> implements ILinkedList<L> {
 	
-	private NodeList root;
-	private NodeList last;
+	private NodeList<L> root;
+	private NodeList<L> last;
 	private int sizeL;
 	
 	
@@ -17,7 +17,7 @@ public class LinkedList<L> implements ILinkedList<L> {
 	@Override
 	public void addLinkedListAtLast(L element) {
 		
-		NodeList newElement = new NodeList(element);
+		NodeList<L> newElement = new NodeList<L>(element);
 		
 		if(root == null) {
 			
@@ -26,7 +26,7 @@ public class LinkedList<L> implements ILinkedList<L> {
 			
 		} else {
 			
-			NodeList aux = root;
+			NodeList<L> aux = root;
 			
 			while(aux.getNext() != null) {
 				
@@ -42,7 +42,7 @@ public class LinkedList<L> implements ILinkedList<L> {
 	
 	public void addLinkedListAtFirst(L element) {
 		
-		NodeList newElement = new NodeList(element);
+		NodeList<L> newElement = new NodeList<L>(element);
 		
 		if(root == null) {
 			
@@ -61,7 +61,7 @@ public class LinkedList<L> implements ILinkedList<L> {
 	@Override
 	public void addCircularLinkedList(L element) {
 		
-		NodeList newElement = new NodeList(element);
+		NodeList<L> newElement = new NodeList<L>(element);
 		
 		if(root == null) {
 			
@@ -83,7 +83,7 @@ public class LinkedList<L> implements ILinkedList<L> {
 	@Override
 	public void addDoublyLinkedList(L element) {
 		
-		NodeList newElement = new NodeList(element);
+		NodeList<L> newElement = new NodeList<L>(element);
 		
 		if(root == null) {
 			
@@ -92,7 +92,7 @@ public class LinkedList<L> implements ILinkedList<L> {
 			
 		} else {
 			
-			NodeList aux = root;
+			NodeList<L> aux = root;
 			
 			
 			while(aux.getNext() != null) {
@@ -123,9 +123,9 @@ public class LinkedList<L> implements ILinkedList<L> {
 			
 		} else {
 			
-		NodeList aux = root;
-		NodeList aux2 = null;
-		NodeList toFind = new NodeList(element);
+		NodeList<L> aux = root;
+		NodeList<L> aux2 = null;
+		NodeList<L> toFind = new NodeList<L>(element);
 		boolean find = false;	
 		
 		
@@ -163,8 +163,8 @@ public class LinkedList<L> implements ILinkedList<L> {
 			
 		} else {
 			
-		NodeList aux = root;
-		NodeList toFind = new NodeList(element);
+		NodeList<L> aux = root;
+		NodeList<L> toFind = new NodeList<L>(element);
 		
 			while(aux != null && !find) {
 				
@@ -203,19 +203,19 @@ public class LinkedList<L> implements ILinkedList<L> {
 		}
 	}
 
-	public NodeList getRoot() {
+	public NodeList<L> getRoot() {
 		return root;
 	}
 
-	public void setRoot(NodeList root) {
+	public void setRoot(NodeList<L> root) {
 		this.root = root;
 	}
 
-	public NodeList getLast() {
+	public NodeList<L> getLast() {
 		return last;
 	}
 
-	public void setLast(NodeList last) {
+	public void setLast(NodeList<L> last) {
 		this.last = last;
 	}
 
@@ -230,8 +230,8 @@ public class LinkedList<L> implements ILinkedList<L> {
 			
 		} else {
 			
-		NodeList aux = root;
-		NodeList toFind = new NodeList(element);
+		NodeList<L> aux = root;
+		NodeList<L> toFind = new NodeList<L>(element);
 		
 			while(aux != last && !find) {
 				
@@ -270,8 +270,8 @@ public class LinkedList<L> implements ILinkedList<L> {
 			
 		} else {
 			
-		NodeList aux = root;
-		NodeList toFind = new NodeList(element);
+		NodeList<L> aux = root;
+		NodeList<L> toFind = new NodeList<L>(element);
 		boolean find = false;	
 		
 		
@@ -311,9 +311,9 @@ public class LinkedList<L> implements ILinkedList<L> {
 			
 		} else {
 			
-		NodeList aux = root;
-		NodeList aux2 = null;
-		NodeList toFind = new NodeList(element);
+		NodeList<L> aux = root;
+		NodeList<L> aux2 = null;
+		NodeList<L> toFind = new NodeList<L>(element);
 		boolean find = false;	
 		
 		
@@ -354,7 +354,7 @@ public class LinkedList<L> implements ILinkedList<L> {
 		
 		L element = null;
 		
-		NodeList aux = root;
+		NodeList<L> aux = root;
 		
 		while(aux.getKey() != k && aux.getNext() != null) {
 			
@@ -365,11 +365,68 @@ public class LinkedList<L> implements ILinkedList<L> {
 		if(aux.getKey() == k) {
 			
 			
-			element = (L) aux;
+			element = aux.getInfo();
 			
 		}
 		
 		return element;
+	}
+
+	@Override
+	public void addLinkedListInPos(int pos, L element) throws Exception {
+		
+		NodeList<L> newElement = new NodeList<L>(element);
+		
+		if(pos > sizeL+1 || pos == 0) {
+			
+			throw new Exception("That position don't exist");
+			
+		} else {
+			
+			NodeList<L> aux = root;
+			NodeList<L> aux2 = null;
+			int counter = 1;
+			
+			while(aux.getNext() != null && counter != pos) {
+				
+				aux2 = aux;
+				aux = aux.getNext();
+				counter++;
+				
+			}
+			
+			aux2.setNext(newElement);
+			newElement.setNext(aux);
+			
+		}
+		
+	}
+
+	@Override
+	public void addLinkedListHash(L element, int key) {
+		
+		NodeList<L> newElement = new NodeList<L>(element, key);
+		
+		if(root == null) {
+			
+			setRoot(newElement);
+			sizeL++;
+			
+		} else {
+			
+			NodeList<L> aux = root;
+			
+			while(aux.getNext() != null) {
+				
+				aux = aux.getNext();
+				
+			}
+			
+			aux.setNext(newElement);
+			sizeL++;			
+		}
+		
+		
 	}
 	
 

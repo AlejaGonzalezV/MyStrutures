@@ -5,7 +5,7 @@ public class Stack<S> implements IStack<S>{
 	
 	
 	private int sizeS;
-	private NodeList top;
+	private NodeList<S> top;
 	
 	
 	public Stack() {
@@ -27,13 +27,13 @@ public class Stack<S> implements IStack<S>{
 
 
 
-	public NodeList getTop() {
+	public NodeList<S> getTop() {
 		return top;
 	}
 
 
 
-	public void setTop(NodeList top) {
+	public void setTop(NodeList<S> top) {
 		this.top = top;
 	}
 
@@ -42,7 +42,7 @@ public class Stack<S> implements IStack<S>{
 	
 	public void push(S newElement) {
 		
-		NodeList element = new NodeList(newElement);
+		NodeList<S> element = new NodeList<S>(newElement);
 		element.setNext(top);
 		setTop(element);
 		sizeS++;

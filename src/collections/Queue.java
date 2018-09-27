@@ -54,7 +54,7 @@ public class Queue<Q> implements IQueue<Q>{
 	@Override
 	public void enqueue(Q newElement) {
 	
-		NodeList element = new NodeList(newElement);
+		NodeList<Q> element = new NodeList<Q>(newElement);
 		
 		if(front == null) {
 			
@@ -75,7 +75,7 @@ public class Queue<Q> implements IQueue<Q>{
 	@Override
 	public Q dequeue() throws Exception {
 		
-		NodeList delete = null;
+		NodeList<Q> delete = null;
 		
 		if(front == null) {
 			

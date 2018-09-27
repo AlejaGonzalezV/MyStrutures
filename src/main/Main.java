@@ -8,29 +8,8 @@ public class Main {
 		
 		IQueue<Integer> cola = new Queue<Integer>();
 		ILinkedList<String>lista = new LinkedList<String>();
+		IHashTable<Integer>hash = new HashTableList<Integer>(10);
 		
-		lista.addDoublyLinkedList("A");
-		lista.addDoublyLinkedList("B");
-		lista.addDoublyLinkedList("C");
-		lista.addDoublyLinkedList("D");
-		lista.addDoublyLinkedList("E");
-		System.out.println(lista.find("C"));
-		lista.deleteDoublyLinkedList("B");
-		System.out.println(lista.sizeL());
-//		System.out.println(lista.sizeL());
-//		lista.deleteLinkedList(2);
-//		System.out.println(lista.sizeL());
-//		System.out.println("");
-
-
-		
-		System.out.println(lista.getRoot().getNext().getInfo());
-		System.out.println(lista.getRoot().getInfo());
-		
-		
-
-
-
 		
 	}
 

@@ -1,13 +1,13 @@
 package interfaces;
 
-import collections.NodeList;
-
 public interface ILinkedList<L> {
 	//Metodos agregar de cada tipo de lista
+	public void addLinkedListHash(L element, int key);
 	public void addLinkedListAtLast(L element);
 	public void addLinkedListAtFirst(L element);
 	public void addCircularLinkedList(L element);
 	public void addDoublyLinkedList(L element);
+	public void addLinkedListInPos(int pos, L element)throws Exception;
 	
 	//Metodos eliminar para cada tipo de lista
 	public void deleteLinkedList(L element) throws Exception;
@@ -21,7 +21,6 @@ public interface ILinkedList<L> {
 	//Otros métodos
 	public int sizeL();
 	public boolean isEmptyL();
-	public NodeList getRoot();
 	public L findWithKey(int k);
 
 }
